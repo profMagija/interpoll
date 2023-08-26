@@ -1,3 +1,8 @@
 from .router import app
 
-app.run(debug=True)
+import sys
+
+app.run(
+    debug="debug" in sys.argv,
+    load_dotenv=True,
+)

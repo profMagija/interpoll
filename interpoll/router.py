@@ -81,6 +81,8 @@ def new_poll_post(session):
         else:
             db_ops.add_participant(session, vote_id, part_name, part_email, token)
 
+    mailing.send_manage_email(email, manage_token, observe_token, title)
+
     for part_name, part_email, token in participants:
         mailing.send_vote_email(part_email, token, title)
 
