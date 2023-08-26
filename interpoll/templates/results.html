@@ -1,0 +1,54 @@
+{% extends "_base.html" %}
+
+{% block title %}
+InterPoll - Results
+{% endblock %}
+{% block header%}
+<meta http-equiv="refresh" content="5">
+{% endblock %}
+{% block content %}
+
+<h1>Results: {{ poll.title }}</h1>
+
+<p>
+    Total participants: {{ total }}, out of which {{ participated }} voted.
+</p>
+
+<table class="table">
+    <tr>
+        <th scope="col">Choice</th>
+        <th scope="col">Num votes</th>
+        <th scope="col">% of total</th>
+        <th scope="col">% of voted</th>
+    </tr>
+
+    {% for result in results %}
+    <tr>
+        <td>{{result[1]}}</td>
+        <td>{{result[2]}}</td>
+        <td>{{ result[2] / total * 100 }}%</td>
+        <td>{{ result[2] / participated * 100 }}%</td>
+    </tr>
+    {% endfor %}
+</table>
+
+{% if not poll.is_anon %}
+<h3>Complete results</h3>
+
+<table class="table">
+    <tr>
+        <th scope="col">Voter</th>
+        <th scope="col">Choice</th>
+    </tr>
+
+    {% for result in full_results %}
+    <tr>
+        <td>{{result[3]}}</td>
+        <td>{{result[1]}}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+{% endif %}
+
+{% endblock %}

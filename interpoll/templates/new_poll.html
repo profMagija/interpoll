@@ -1,0 +1,55 @@
+{% extends "_base.html" %}
+
+{% block title %}
+InterPoll - New Poll
+{% endblock %}
+
+{% block content %}
+<h1>New Poll</h1>
+
+<form action="/new_poll/post" method="post">
+    <div class="mb-3">
+        <label for="title" class="form-label">Poll title</label>
+        <input type="text" class="form-control" id="title" name="title" aria-describedby="emailHelp">
+        <div id="emailHelp" class="form-text">Will be shown to vote participants.</div>
+    </div>
+
+    <div class="mb-3">
+        <label for="description" class="form-label">Poll description</label>
+        <textarea class="form-control" id="description" name="description" aria-describedby="descHelp"
+            rows="5"></textarea>
+        <div id="descHelp" class="form-text">Will be shown to vote participants.</div>
+    </div>
+
+    <div class="mb-3">
+        <label for="choices" class="form-label">Choices</label>
+        <textarea class="form-control" id="choices" name="choices" aria-describedby="choicesHelp" rows="5"></textarea>
+        <div id="choicesHelp" class="form-text">One option per line.</div>
+    </div>
+
+    <div class="mb-3">
+        <label for="email" class="form-label">Organizer email</label>
+        <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp">
+        <div id="emailHelp" class="form-text">Will be used to send the vote link to the organizer.</div>
+    </div>
+
+    <div class="mb-3">
+        <label for="participants" class="form-label">Participants</label>
+        <textarea class="form-control" id="participants" name="participants" aria-describedby="participantsHelp"
+            rows="5"></textarea>
+        <div id="participantsHelp" class="form-text">One email per line.</div>
+    </div>
+
+    <div class="mb-3">
+        <input type="checkbox" class="form-check-input" id="isMultipleChoice" name="isMultipleChoice">
+        <label class="form-check-label" for="isMultipleChoice">Allow multiple choices</label>
+    </div>
+
+    <div class="mb-3">
+        <input type="checkbox" class="form-check-input" id="isAnonymous" name="isAnonymous">
+        <label class="form-check-label" for="isAnonymous">Anonymous voting</label>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Create Poll</button>
+</form>
+{% endblock %}

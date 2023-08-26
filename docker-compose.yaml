@@ -1,0 +1,11 @@
+services:
+  db:
+    image: postgres
+    environment:
+      POSTGRES_PASSWORD: interpoll
+      POSTGRES_USER: interpoll
+      POSTGRES_DB: interpoll
+    ports:
+      - 5432:5432
+    volumes:
+      - ./db:/var/lib/postgresql/data

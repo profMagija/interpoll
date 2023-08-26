@@ -1,0 +1,43 @@
+{% extends "_base.html" %}
+
+{% block title %}
+InterPoll - Vote
+{% endblock %}
+
+{% block content %}
+
+<h1>{{ poll.title }}</h1>
+
+{% if poll.is_anonymous %}
+<h3>This poll is anonymous</h3>
+<p>Your vote will not be tied to your name or email address.</p>
+{% endif %}
+
+<pre>{{ poll.desc }}</pre>
+
+<form action="/vote/{{vote_token}}/post" method="post">
+    {% for choice in poll.choices %}
+
+    {% if poll.is_multiple %}
+    <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="yes" id="choice-{{choice[0]}}"
+            name="choice-{{choice[0]}}">
+        <label class="form-check-label" for="choice-{{choice[0]}}">
+            {{choice[1]}}
+        </label>
+    </div>
+    {% else %}
+    <div class="form-check">
+        <input class="form-check-input" type="radio" name="choice" id="choice-{{choice[0]}}" value="{{choice[0]}}">
+        <label class="form-check-label" for="choice-{{choice[0]}}">
+            {{choice[1]}}
+        </label>
+    </div>
+    {% endif %}
+
+    {% endfor %}
+
+    <button type="submit" class="btn btn-primary">Vote</button>
+</form>
+
+{% endblock %}

@@ -1,0 +1,14 @@
+{% extends "_base.html" %}
+
+{% block title %}
+InterPoll - New poll
+{% endblock %}
+
+{% block content %}
+<h1>Poll created</h1>
+
+<p>
+    Your poll has been created. You can see the live results on the following link:
+    <a href="/results/{{ observe_token }}">{{base_url}}/results/{{ observe_token }}</a>
+</p>
+{% endblock %}
